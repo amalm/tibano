@@ -1,0 +1,37 @@
+TIBANO Business Data Model
+==========================
+
+[plantuml, BusinessDataModel, svg]
+....
+
+class User {
+  String name
+}
+
+class Car {
+  String licensePlate
+}
+
+class ParkingTransaction {
+  DateTime start
+  DateTime end
+}
+
+class Area {
+  String name
+  Long capacity
+  Long level
+  Double latitude
+  Double longitude
+}
+
+User "1" -down- "0..n" Car
+Car "1" -down- "0..n" ParkingTransaction
+ParkingTransaction "0..n" -down- "1" Area
+
+....
+
+
+A _Car_ can have many _ParkingTransactions_ but at most one
+ongoing, i.e., a transaction without an end date time.
+
