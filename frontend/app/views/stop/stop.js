@@ -3,12 +3,13 @@
 angular.module('myApp.stop', ['ngRoute'])
 
 .config(['$routeProvider', function($routeProvider) {
-  $routeProvider.when('/stop', {
-    templateUrl: 'views/stop/stop.html',
-    controller: 'View1Ctrl'
-  });
+    $routeProvider.when('/stop', {
+        templateUrl: 'views/stop/stop.html',
+        controller: 'StopCtrl'
+    });
 }])
 
-.controller('View1Ctrl', [function() {
-
+.controller('StopCtrl', ['$scope', function($scope) {
+    $scope.user = 'StopUser';
+    $scope.licensePlate = "S-STOP1";
 }]);

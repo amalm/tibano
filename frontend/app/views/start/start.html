@@ -1,23 +1,23 @@
-    <form>
-      <div class="container">
-      <div class="row row-centered">
-          <div class="well well-lg">
-            <p class="text-center">Hi Bruce.</p>
-          </div>
+<form>
+    <div class="container">
+        <div class="row row-centered">
+            <div class="well well-lg" ng-controller="StartCtrl">
+                <p class="text-center">Hi {{ user }}.</p>
+            </div>
         </div>
         <div class="row row-centered">
-          <div class="well well-lg">
-            <div class="dropdown">
-              <button class="btn btn-default dropdown-toggle btn-success" type="button" id="dropdownLicensePlate" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            <div class="well well-lg">
+                <div class="dropdown">
+                    <button class="btn btn-default dropdown-toggle btn-success" type="button" id="dropdownLicensePlate" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                 Select the car to start the parking...
                 <span class="caret"></span>
               </button>
-              <ul class="dropdown-menu" aria-labelledby="dropdownLicensePlate">
-                <li><a href="#">S-URPISE 1</a></li>
-                <li><a href="#">S-TESLA</a></li>
-              </ul>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownLicensePlate">
+                        <li><a href="#">S-URPISE 1</a></li>
+                        <li><a href="#">S-TESLA</a></li>
+                    </ul>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
-      </form>
+    </div>
+</form>

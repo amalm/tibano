@@ -3,12 +3,12 @@
 angular.module('myApp.start', ['ngRoute'])
 
 .config(['$routeProvider', function($routeProvider) {
-  $routeProvider.when('/start', {
-    templateUrl: 'views/start/start.html',
-    controller: 'View1Ctrl'
-  });
+    $routeProvider.when('/start', {
+        templateUrl: 'views/start/start.html',
+        controller: 'StartCtrl'
+    });
 }])
 
-.controller('View1Ctrl', [function() {
-
+.controller('StartCtrl', ['$scope', function($scope) {
+    $scope.user = 'StartUser';
 }]);
