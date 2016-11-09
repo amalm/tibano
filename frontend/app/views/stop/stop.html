@@ -1,6 +1,7 @@
 <div class="well well-lg" ng-controller="StopCtrl">
-    Hi {{ user.name }}. Parking is running for {{ licensePlate }}.
+    Hi {{ user.name }}. Parking is running for <b>{{ licensePlate }}</b>.
 </div>
-<form>
-    <button class="btn btn-danger center-block" type="submit">Stop</button>
+<form ng-controller="StopCtrl">
+    <button class="btn btn-danger center-block" type="submit"
+            ng-click="stopPressed()">Stop</button>
 </form>
