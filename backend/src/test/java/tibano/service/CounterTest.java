@@ -26,12 +26,12 @@ public class CounterTest {
 
     @Test
     public void entry() throws Exception {
-        String areaId = "area12";
+        Long areaId = 4711l;
         Long occupiedBefore = 5l;
         Area before = new Area("Bahnhof Nord", 12l, occupiedBefore);
         when(areaRepository.findOne(areaId)).thenReturn(before);
 
-        CurrentAreaUtilization after = counter.entry("area12");
+        CurrentAreaUtilization after = counter.entry(areaId);
 
         Assert.assertEquals(before.getCapacity(), after.getCapacity());
         Assert.assertEquals(occupiedBefore+1, after.getOccupied().intValue());

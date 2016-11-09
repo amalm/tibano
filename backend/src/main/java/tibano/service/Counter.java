@@ -23,7 +23,7 @@ public class Counter {
 	}
 
 	@RequestMapping(path="/entry/{areaId}", method = RequestMethod.POST)
-	CurrentAreaUtilization entry(@PathVariable String areaId) {
+	CurrentAreaUtilization entry(@PathVariable Long areaId) {
 		LOGGER.info("Entry to area {}", areaId);
 		Area area = areaRepository.findOne(areaId);
         area.incrementOccupied();

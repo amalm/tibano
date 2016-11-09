@@ -11,7 +11,7 @@ import javax.persistence.Id;
 public class Area {
 	@Id
     @GeneratedValue(strategy=GenerationType.AUTO)
-    private String id;
+    private Long id;
 	private String name;
 	private Long capacity;
 	private Long occupied;
@@ -38,7 +38,7 @@ public class Area {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getId() {
+	public Long getId() {
 		return id;
 	}
 	public Long getCapacity() {
