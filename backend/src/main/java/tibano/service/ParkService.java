@@ -33,7 +33,7 @@ public class ParkService {
 
 	@RequestMapping(path="/start/{areaId}/{licensePlate}", method = RequestMethod.POST)
 	void start(@PathVariable Long areaId, @PathVariable String licensePlate) {
-		LOGGER.info("Start parking in area {} with license plate", areaId, licensePlate);
+		LOGGER.info("Start parking in area {} with license plate {}", areaId, licensePlate);
 		// Check if a TX is already running
 		ParkingTransaction pt = ptRepository.findOpenTransactionByAreaAndLicensePlate(areaId, licensePlate);
 		if (pt != null) {
