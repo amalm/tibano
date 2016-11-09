@@ -1,7 +1,5 @@
 package tibano.entity;
 
-import org.springframework.core.style.ToStringCreator;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -53,17 +51,16 @@ public class Area {
 	public void setOccupied(Long occupied) {
 		this.occupied = occupied;
 	}
+
 	@Override
 	public String toString() {
-		
-		return new ToStringCreator(this)
-				.append("id=").append(id)
-				.append(" name=").append(name)
-				.append(" capacity=").append(capacity)
-				.append(" occupied=").append(occupied)
-				.toString();
+		return "Area{" +
+				"id=" + id +
+				", name='" + name + '\'' +
+				", capacity=" + capacity +
+				", occupied=" + occupied +
+				'}';
 	}
-
 
 	public void incrementOccupied() {
 		this.occupied = this.occupied + 1;
