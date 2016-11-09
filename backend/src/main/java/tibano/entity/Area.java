@@ -63,4 +63,10 @@ public class Area {
 	public void incrementOccupied() {
 		this.occupied = this.occupied + 1;
 	}
+
+	public void decrementOccupied() {
+		this.occupied = occupied - 1;
+		if (occupied < 0)
+			occupied = 0l;
+	}
 }
