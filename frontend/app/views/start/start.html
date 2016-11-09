@@ -1,22 +1,18 @@
 <form>
-    <div class="container">
+    <div class="container" ng-controller="StartCtrl">
         <div class="row row-centered">
-            <div class="well well-lg" ng-controller="StartCtrl">
-                <p class="text-center">Hi {{ user }}.</p>
+            <div class="well well-lg">
+                <p class="text-center">Hi {{ user.name }}.</p>
             </div>
         </div>
         <div class="row row-centered">
             <div class="well well-lg">
-                <div class="dropdown">
-                    <button class="btn btn-default dropdown-toggle btn-success" type="button" id="dropdownLicensePlate" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                Select the car to start the parking...
-                <span class="caret"></span>
-              </button>
-                    <ul class="dropdown-menu" aria-labelledby="dropdownLicensePlate">
-                        <li><a href="#">S-URPISE 1</a></li>
-                        <li><a href="#">S-TESLA</a></li>
-                    </ul>
-                </div>
+                <select class="button btn btn-default dropdown-toggle btn-success" 
+                        ng-model="selectedLicensePlate" 
+                        ng-options="x for x in licensePlates"
+                        ng-change="update()">
+                    <option value="" disabled selected>Select car to start parking...</option>
+                </select>
             </div>
         </div>
     </div>

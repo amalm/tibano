@@ -9,7 +9,7 @@ angular.module('myApp.stop', ['ngRoute'])
     });
 }])
 
-.controller('StopCtrl', ['$scope', function($scope) {
-    $scope.user = 'StopUser';
-    $scope.licensePlate = "S-STOP1";
+.controller('StopCtrl', ['$scope', '$rootScope', function($scope, $rootScope) {
+    $scope.user = $rootScope.currentUser;
+    $scope.licensePlate = $rootScope.selectedLicensePlate;
 }]);

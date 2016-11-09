@@ -8,7 +8,8 @@ angular.module('myApp', [
     'myApp.stop',
     'myApp.enforcement'
 ]).
-config(['$locationProvider', '$routeProvider', '$httpProvider', function($locationProvider, $routeProvider, $httpProvider) {
+config(['$locationProvider', '$routeProvider', '$httpProvider',
+function($locationProvider, $routeProvider, $httpProvider) {
     $locationProvider.hashPrefix('!');
 
     $routeProvider.otherwise({
@@ -17,4 +18,7 @@ config(['$locationProvider', '$routeProvider', '$httpProvider', function($locati
 
     $httpProvider.defaults.useXDomain = true;
     delete $httpProvider.defaults.headers.common['X-Requested-With'];
-}]);
+}])
+.run(function($rootScope) {
+    $rootScope.currentUser = { id:1, name:"Hubert Farnsworth"};
+});
