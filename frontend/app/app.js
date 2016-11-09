@@ -19,6 +19,8 @@ function($locationProvider, $routeProvider, $httpProvider) {
     $httpProvider.defaults.useXDomain = true;
     delete $httpProvider.defaults.headers.common['X-Requested-With'];
 }])
-.run(function($rootScope) {
+.run(function($rootScope, $http) {
     $rootScope.currentUser = { id:1, name:"Hubert Farnsworth"};
+    $rootScope.selectedArea = { id:1, name:"Airport"};
+    $rootScope.basisUrl = 'http://192.168.0.101:8080';
 });
