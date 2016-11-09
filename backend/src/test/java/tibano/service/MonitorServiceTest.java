@@ -20,18 +20,18 @@ import tibano.entity.AreaRepository;
 import tibano.entity.ParkingTransactionRepository;
 
 @RunWith(SpringRunner.class)
-public class MonitorTest {
+public class MonitorServiceTest {
 
 	@Mock
     private AreaRepository areaRepository;
 	@Mock
 	private ParkingTransactionRepository ptRepository;
-    private Monitor target;
+    private MonitorService target;
 
     @Before
     public void setup() {
     	MockitoAnnotations.initMocks(this);
-    	target = new Monitor(areaRepository, ptRepository);
+    	target = new MonitorService(areaRepository, ptRepository);
     }
 
     @Test

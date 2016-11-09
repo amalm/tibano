@@ -17,14 +17,14 @@ import tibano.entity.ParkingTransactionRepository;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:8000")
-public class Park {
-	private final static Logger LOGGER = LoggerFactory.getLogger(Park.class);
+public class ParkService {
+	private final static Logger LOGGER = LoggerFactory.getLogger(ParkService.class);
 	private final AreaRepository areaRepository;
 	private final ParkingTransactionRepository ptRepository;
 	private final CarRepository carRepository;
 	
 	
-	public Park(tibano.entity.AreaRepository areaRepository, ParkingTransactionRepository ptRepository, CarRepository carRepository) {
+	public ParkService(tibano.entity.AreaRepository areaRepository, ParkingTransactionRepository ptRepository, CarRepository carRepository) {
 		super();
 		this.areaRepository = areaRepository;
 		this.ptRepository = ptRepository;

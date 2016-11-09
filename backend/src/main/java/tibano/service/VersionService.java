@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:8000")
-public class GetVersion {
+public class VersionService {
 	 private static final String VERSION = "100";
 
 	@RequestMapping("/getVersion")

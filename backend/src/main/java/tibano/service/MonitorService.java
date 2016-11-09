@@ -15,12 +15,12 @@ import tibano.entity.ParkingTransactionRepository;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:8000")
-public class Monitor {
+public class MonitorService {
 	private final AreaRepository areaRepository;
 	private final ParkingTransactionRepository ptRepository;
 
 	@Autowired
-	public Monitor(AreaRepository areaRepository, ParkingTransactionRepository ptRepository) {
+	public MonitorService(AreaRepository areaRepository, ParkingTransactionRepository ptRepository) {
 		this.areaRepository = areaRepository;
 		this.ptRepository = ptRepository;
 	}
