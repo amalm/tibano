@@ -9,11 +9,10 @@
     </thead>
     <tbody>
         <tr ng-repeat="area in areaInfo" class="{{area.attentionClass}}" ng-controller="EnforcementCtrl">
-            <td>{{area.areaName}}</td>
+            <td>{{area.name}}</td>
             <td>{{area.capacity}}</td>
             <td>{{area.occupied}}</td>
-            <td>{{area.paying}}</td>
+            <td>{{area.runningPayments}}</td>
         </tr>
     <tbody>
 </table>
-<p><get-version></get-version></p>
