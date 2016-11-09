@@ -37,5 +37,17 @@ public class CounterTest {
         Assert.assertEquals(occupiedBefore+1, after.getOccupied().intValue());
     }
 
+    @Test
+    public void exit() throws Exception {
+        Long areaId = 4711l;
+        Long occupiedBefore = 5l;
+        Area before = new Area("Bahnhof Nord", 12l, occupiedBefore);
+        when(areaRepository.findOne(areaId)).thenReturn(before);
+
+        CurrentAreaUtilization after = counter.exit(areaId);
+
+        Assert.assertEquals(before.getCapacity(), after.getCapacity());
+        Assert.assertEquals(occupiedBefore-1, after.getOccupied().intValue());
+    }
 
 }

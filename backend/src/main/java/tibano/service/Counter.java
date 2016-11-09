@@ -27,13 +27,16 @@ public class Counter {
 		LOGGER.info("Entry to area {}", areaId);
 		Area area = areaRepository.findOne(areaId);
         area.incrementOccupied();
-		LOGGER.info("Area {} now at {} occupied lots.", areaId, area.getOccupied());
+		LOGGER.info("Area {} now.", area, area.getOccupied());
 		return new CurrentAreaUtilization(area.getCapacity(), area.getOccupied());
 	}
 
 	@RequestMapping(path="/exit/{areaId}", method = RequestMethod.POST)
-	CurrentAreaUtilization exit(@PathVariable String areaId) {
+	CurrentAreaUtilization exit(@PathVariable Long areaId) {
 		LOGGER.info("Exit from area {}", areaId);
-		return new CurrentAreaUtilization(23l, 12l);
+		Area area = areaRepository.findOne(areaId);
+		area.decrementOccupied();
+		LOGGER.info("Area now {}.", area, area.getOccupied());
+		return new CurrentAreaUtilization(area.getCapacity(), area.getOccupied());
 	}
 }

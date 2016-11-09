@@ -56,7 +56,12 @@ public class Area {
 	@Override
 	public String toString() {
 		
-		return new ToStringCreator(this).append(name).append(capacity).append(occupied).toString();
+		return new ToStringCreator(this)
+				.append("id=").append(id)
+				.append(" name=").append(name)
+				.append(" capacity=").append(capacity)
+				.append(" occupied=").append(occupied)
+				.toString();
 	}
 
 
