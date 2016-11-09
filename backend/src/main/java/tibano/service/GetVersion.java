@@ -10,7 +10,7 @@ public class GetVersion {
 	 private static final String VERSION = "100";
 
 	@RequestMapping("/getVersion")
-	    public String getVersion() {
-		 return VERSION;
+	public String getVersion() {
+		return VERSION;
 	 }
 }
