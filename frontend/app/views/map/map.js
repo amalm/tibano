@@ -9,6 +9,6 @@ angular.module('myApp.map', ['ngRoute'])
   });
 }])
 
-.controller('MapCtrl', [function() {
-
+.controller('MapCtrl', ['$scope', '$rootScope', function($scope, $rootScope) {
+    $scope.user = $rootScope.currentUser;
 }]);
