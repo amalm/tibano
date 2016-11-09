@@ -1,17 +1,17 @@
 package tibano.entity;
 
+import org.springframework.core.style.ToStringCreator;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-import org.springframework.core.style.ToStringCreator;
-
 @Entity
 public class Area {
 	@Id
     @GeneratedValue(strategy=GenerationType.AUTO)
-    private Long id;
+    private String id;
 	private String name;
 	private Long capacity;
 	private Long occupied;
@@ -21,10 +21,15 @@ public class Area {
 	{
 		this(null, null);
 	}
-	
+
 	public Area(String name, Long capacity) {
 		this.name = name;
 		this.capacity = capacity;
+	}
+
+	public Area(String name, Long capacity, Long occupied) {
+		this(name, capacity);
+		this.occupied = occupied;
 	}
 	
 	public String getName() {
@@ -33,7 +38,7 @@ public class Area {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public Long getId() {
+	public String getId() {
 		return id;
 	}
 	public Long getCapacity() {
@@ -53,6 +58,9 @@ public class Area {
 		
 		return new ToStringCreator(this).append(name).append(capacity).append(occupied).toString();
 	}
-	
-	
+
+
+	public void incrementOccupied() {
+		this.occupied = this.occupied + 1;
+	}
 }
