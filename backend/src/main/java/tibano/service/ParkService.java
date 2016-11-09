@@ -2,6 +2,7 @@ package tibano.service;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -15,14 +16,15 @@ import tibano.entity.ParkingTransaction;
 import tibano.entity.ParkingTransactionRepository;
 
 @RestController
-public class Park {
-	private final static Logger LOGGER = LoggerFactory.getLogger(Park.class);
+@CrossOrigin(origins = "http://localhost:8000")
+public class ParkService {
+	private final static Logger LOGGER = LoggerFactory.getLogger(ParkService.class);
 	private final AreaRepository areaRepository;
 	private final ParkingTransactionRepository ptRepository;
 	private final CarRepository carRepository;
 	
 	
-	public Park(tibano.entity.AreaRepository areaRepository, ParkingTransactionRepository ptRepository, CarRepository carRepository) {
+	public ParkService(tibano.entity.AreaRepository areaRepository, ParkingTransactionRepository ptRepository, CarRepository carRepository) {
 		super();
 		this.areaRepository = areaRepository;
 		this.ptRepository = ptRepository;
@@ -32,6 +34,12 @@ public class Park {
 	@RequestMapping(path="/start/{areaId}/{licensePlate}", method = RequestMethod.POST)
 	void start(@PathVariable Long areaId, @PathVariable String licensePlate) {
 		LOGGER.info("Start parking in area {} with license plate", areaId, licensePlate);
+		// Check if a TX is already running
+		ParkingTransaction pt = ptRepository.findOpenTransactionByAreaAndLicensePlate(areaId, licensePlate);
+		if (pt != null) {
+			LOGGER.warn("A parking payment transaction is already running for areaId/licensePlate", areaId, licensePlate);
+			return;
+		}
 		Area area = areaRepository.findOne(areaId);
 		if (area != null) {
 			Car car = carRepository.findByLicensePlate(licensePlate);

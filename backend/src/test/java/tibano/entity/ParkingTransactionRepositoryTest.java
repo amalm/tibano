@@ -4,6 +4,7 @@ package tibano.entity;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -58,11 +59,20 @@ public class ParkingTransactionRepositoryTest {
 		pt = target.save(pt);
 		// then I get only the open TX
 		pt = target.findOpenTransactionByAreaAndLicensePlate(pt.getArea().getId(), car.getLicensePlate());
-		
 	}
+
 	@Test
 	public void findOpenTransactionByAreaAndLicensePlateNoTX() {
 		assertNull(target.findOpenTransactionByAreaAndLicensePlate(area.getId(), "STEST3"));
+		
+	}
+	@Test
+	public void findOpenTransactionByArea() {
+		Car car = carRepository.save(new Car("STEST4", user));
+		ParkingTransaction pt = new ParkingTransaction(area, car);
+		pt.end();
+		pt = target.save(pt);
+		Assert.assertTrue(target.getOpenTransactionByAreaCount(pt.getArea().getId()) > 0);
 		
 	}
 }

@@ -17,7 +17,7 @@ import tibano.entity.ParkingTransactionRepository;
 import tibano.entity.User;
 
 @RunWith(SpringRunner.class)
-public class ParkTest {
+public class ParkServiceTest {
 	private static final Long AREA_ID = 1L;
 	private static final String AREA_NAME = "Area";
 	private static final String LIC_PLATE = "S-TEST";
@@ -27,12 +27,12 @@ public class ParkTest {
 	private ParkingTransactionRepository ptRepository;
 	@Mock
 	private CarRepository carRepository;
-	private Park target;
+	private ParkService target;
 	
 	@Before
     public void setup() {
 		MockitoAnnotations.initMocks(this);
-		target = new Park(areaRepository, ptRepository, carRepository);
+		target = new ParkService(areaRepository, ptRepository, carRepository);
     }
 	
 	@Test
