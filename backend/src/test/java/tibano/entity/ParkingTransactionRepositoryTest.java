@@ -70,7 +70,6 @@ public class ParkingTransactionRepositoryTest {
 	public void findOpenTransactionByArea() {
 		Car car = carRepository.save(new Car("STEST4", user));
 		ParkingTransaction pt = new ParkingTransaction(area, car);
-		pt.end();
 		pt = target.save(pt);
 		Assert.assertTrue(target.getOpenTransactionByAreaCount(pt.getArea().getId()) > 0);
 		
