@@ -17,7 +17,10 @@ function($scope, $location, $rootScope, $http) {
 
     $scope.update = function() {
         $rootScope.selectedLicensePlate = $scope.selectedLicensePlate;
-        $location.path("stop");
+        $http.post($rootScope.basisUrl+'/start/'+$rootScope.selectedArea.id+'/'+$rootScope.selectedLicensePlate)
+        .then(function(response){
+            $location.path("stop");
+        });
     }
 
     $scope.init = function() {

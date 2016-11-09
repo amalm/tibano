@@ -57,7 +57,7 @@ public class ParkService {
 
 	@RequestMapping(path="/stop/{areaId}/{licensePlate}", method = RequestMethod.POST)
 	void stop(@PathVariable Long areaId, @PathVariable String licensePlate) {
-		LOGGER.info("Stop parking in area {} with license plate", areaId, licensePlate);
+		LOGGER.info("Stop parking in area {} with license plate {}", areaId, licensePlate);
 		ParkingTransaction pt = ptRepository.findOpenTransactionByAreaAndLicensePlate(areaId, licensePlate);
 		if (pt != null) {
 			pt.end();
