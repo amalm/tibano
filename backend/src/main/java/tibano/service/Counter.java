@@ -27,6 +27,7 @@ public class Counter {
 		LOGGER.info("Entry to area {}", areaId);
 		Area area = areaRepository.findOne(areaId);
         area.incrementOccupied();
+		areaRepository.save(area);
 		LOGGER.info("Area {} now.", area, area.getOccupied());
 		return new CurrentAreaUtilization(area.getCapacity(), area.getOccupied());
 	}
@@ -36,6 +37,7 @@ public class Counter {
 		LOGGER.info("Exit from area {}", areaId);
 		Area area = areaRepository.findOne(areaId);
 		area.decrementOccupied();
+		areaRepository.save(area);
 		LOGGER.info("Area now {}.", area, area.getOccupied());
 		return new CurrentAreaUtilization(area.getCapacity(), area.getOccupied());
 	}
