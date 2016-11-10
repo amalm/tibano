@@ -9,6 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import tibano.dto.PaymentInfo;
+
 @Entity
 public class ParkingTransaction {
 	@Id
@@ -24,6 +26,9 @@ public class ParkingTransaction {
 	private Car car;
 	private final LocalDateTime start;
 	private LocalDateTime end;
+	private String duration;
+	private String amount;
+	private String loyaltyPoints;
 	
 	//Hibernate
 	ParkingTransaction()
@@ -56,9 +61,26 @@ public class ParkingTransaction {
 	public LocalDateTime getEnd() {
 		return end;
 	}
+	
 
-	public void end() {
+	public String getDuration() {
+		return duration;
+	}
+
+	public String getAmount() {
+		return amount;
+	}
+
+	public String getLoyaltyPoints() {
+		return loyaltyPoints;
+	}
+
+	public void end(PaymentInfo paymentInfo) {
 		end = LocalDateTime.now();
+		duration = paymentInfo.getDuration();
+		amount = paymentInfo.getAmount();
+		loyaltyPoints = paymentInfo.getLoyaltyPoints().toString();
+		
 	}
 	
 }

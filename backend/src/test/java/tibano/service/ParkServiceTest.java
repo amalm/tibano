@@ -1,5 +1,6 @@
 package tibano.service;
 
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -8,6 +9,7 @@ import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import tibano.dto.PaymentInfo;
 import tibano.entity.Area;
 import tibano.entity.AreaRepository;
 import tibano.entity.Car;
@@ -65,5 +67,12 @@ public class ParkServiceTest {
 		Mockito.when(ptRepository.findOpenTransactionByAreaAndLicensePlate(AREA_ID, LIC_PLATE)).thenReturn(null);
 		target.stop(AREA_ID, LIC_PLATE);
 		Mockito.verify(ptRepository, Mockito.times(0)).save(Mockito.any(ParkingTransaction.class));
+	}
+	@Test
+	public void getPaymentInfo() {
+		ParkingTransaction pt = new ParkingTransaction(new Area(AREA_NAME, 30L), new Car(LIC_PLATE, new User("")));
+		Mockito.when(ptRepository.findOpenTransactionByAreaAndLicensePlate(AREA_ID, LIC_PLATE)).thenReturn(pt);
+		PaymentInfo paymentInfo = target.getPaymentInfo(AREA_ID, LIC_PLATE);
+		Assert.assertNotNull(paymentInfo);
 	}
 }

@@ -4,6 +4,8 @@ package tibano.entity;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 
+import java.time.Duration;
+
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -13,6 +15,8 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+
+import tibano.dto.PaymentInfo;
 
 
 @RunWith(SpringRunner.class)
@@ -54,7 +58,7 @@ public class ParkingTransactionRepositoryTest {
 		// when there is a closed TX
 		Car car = carRepository.save(new Car(LIC_PLATE+"1", user));
 		ParkingTransaction pt = new ParkingTransaction(area, car);
-		pt.end();
+		pt.end(new PaymentInfo(Double.valueOf(0), Duration.ZERO, Double.valueOf(0)));
 		pt = target.save(pt);
 		// and an open TX
 		pt = new ParkingTransaction(area, car);
