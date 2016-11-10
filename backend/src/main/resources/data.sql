@@ -7,3 +7,4 @@ insert into User(id, name) values(1, 'Hubert Farnsworth');
 insert into Car(id, license_plate, user_id) values (1, 'HH FT 4711', 1);
 insert into Car(id, license_plate, user_id) values (2, 'K 361 GO', 1);
 insert into Car(id, license_plate, user_id) values (3, 'S 123 AB', 1);
+insert into Car(id, license_plate, user_id) values (4, 'SL863MG', 1);
