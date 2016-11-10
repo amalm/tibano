@@ -25,6 +25,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -66,6 +67,10 @@ public class MainActivity extends Activity implements AsyncListener<AlprResult> 
 
     private TextView errorText;
 
+    ImageView ivPaidStatePaid;
+    ImageView ivPaidStateUnpaid;
+    ImageView ivPaidState;
+
     private ProgressDialog progressDialog;
 
     private Payment payment;
@@ -80,10 +85,10 @@ public class MainActivity extends Activity implements AsyncListener<AlprResult> 
         }
     };
 
-    private static String CHECKPAYMENT_URL = "http://192.168.0.101:8080/checkPayment"; // GET
+    private static String CHECKPAYMENT_URL = "http://192.168.1.101:8080/checkPayment"; // GET
     private static String PARKING_AREA = "1";
 
-    private static String CHECKAREAS_URL = "http://192.168.0.101:8080/getAreas"; // GET
+    private static String CHECKAREAS_URL = "http://192.168.1.101:8080/getAreas"; // GET
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -117,19 +122,24 @@ public class MainActivity extends Activity implements AsyncListener<AlprResult> 
 
         errorText = (TextView)findViewById(R.id.errorTextView);
 
-        Button takePicBtn = (Button)findViewById(R.id.button);
-
-        setBtnListenerOrDisable(takePicBtn, takePhotoBtnClickListener,
+        //Button takePicBtn = (Button)findViewById(R.id.button);
+        final ImageButton ib_checkpayment = (ImageButton) findViewById(R.id.ib_checkpayment);
+        setBtnListenerOrDisable(ib_checkpayment, takePhotoBtnClickListener,
                 MediaStore.ACTION_IMAGE_CAPTURE);
 
+        ivPaidStatePaid = (ImageView) findViewById(R.id.iv_paid_valid);
+        ivPaidStateUnpaid = (ImageView) findViewById(R.id.iv_paid_invalid);
+        ivPaidState = (ImageView) findViewById(R.id.iv_paid_open);
+        resetPaidState();
+
         // Check payment
-        final Button button = (Button) findViewById(R.id.buttonWS);
-        button.setOnClickListener(new View.OnClickListener() {
+        //final Button button = (Button) findViewById(R.id.buttonWS);
+        final ImageView ivCheckPayment = (ImageView) findViewById(R.id.ivCheckPayment);
+        ivCheckPayment.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 new CheckPayment().execute();
             }
         });
-
 
         // start Area Update
         new CheckAreas().execute();
@@ -287,6 +297,27 @@ public class MainActivity extends Activity implements AsyncListener<AlprResult> 
     }
 
 
+    private void setPaidState(boolean paid) {
+
+        ivPaidState.setVisibility(View.GONE);
+
+        if (paid) {
+            ivPaidStatePaid.setVisibility(View.VISIBLE);
+            ivPaidStateUnpaid.setVisibility(View.GONE);
+        } else {
+            ivPaidStatePaid.setVisibility(View.GONE);
+            ivPaidStateUnpaid.setVisibility(View.VISIBLE);
+        }
+    }
+
+    private void resetPaidState() {
+
+        ivPaidState.setVisibility(View.VISIBLE);
+        ivPaidStatePaid.setVisibility(View.GONE);
+        ivPaidStateUnpaid.setVisibility(View.GONE);
+    }
+
+
     private void setPic() {
 
 		/* There isn't enough memory to open up more than a couple camera photos */
@@ -405,7 +436,7 @@ public class MainActivity extends Activity implements AsyncListener<AlprResult> 
     }
 
     private void setBtnListenerOrDisable(
-            Button btn,
+            ImageButton btn,
             Button.OnClickListener onClickListener,
             String intentName
     ) {
@@ -565,6 +596,10 @@ public class MainActivity extends Activity implements AsyncListener<AlprResult> 
 
             if (payment != null) {
                 quoteText.setText(payment.toString());
+                //setPaidState(payment.getPaying());
+
+                setPaidState(true);;
+
             } else {
                 Log.d(LOG_TAG,"Payment empty");
             }
