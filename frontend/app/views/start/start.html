@@ -9,13 +9,13 @@
         </div>
         <div class="row row-centered">
             <div class="well well-lg">
-                <select class="button btn btn-default dropdown-toggle btn-success" 
-                        ng-model="selectedLicensePlate" 
-                        ng-options="x for x in licensePlates"
-                        ng-click="update()">
-                    <option value="" disabled selected>Select car to start parking...</option>
-                </select>
-                <button class="button btn btn-default btn-success" value="" ng-click="back()">Back to Map</button>
+                <p>Select car to start parking...</p>
+                <span ng-repeat="x in licensePlates">
+                <button class="button btn btn-default btn-success" value=""
+                        ng-click="update({x})"
+                        >{{x}}</button>&nbsp;&nbsp;
+                </span>
+                <button class="button btn btn-default btn-danger" value="" ng-click="back()">Back to Map</button>
             </div>
         </div>
     </div>
