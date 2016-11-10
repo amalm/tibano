@@ -2,6 +2,7 @@ package tibano.service;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.util.concurrent.Future;
 
 import org.apache.http.auth.AuthenticationException;
 import org.apache.http.auth.UsernamePasswordCredentials;
@@ -13,20 +14,24 @@ import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.scheduling.annotation.Async;
+import org.springframework.scheduling.annotation.AsyncResult;
 import org.springframework.stereotype.Service;
 @Service
 public class LoyaltyIntegrator {
 	private final static Logger LOGGER = LoggerFactory.getLogger(LoyaltyIntegrator.class);
 
-	public boolean addPoints(Integer points) {
+	@Async
+	public Future<Boolean> addPoints(Integer points) {
 		CloseableHttpClient client = HttpClients.createDefault();
 		HttpPost httpPost = new HttpPost("https://loyaltydemo.skidataus.com/DesktopModules/v1/API/points");
 		UsernamePasswordCredentials creds = new UsernamePasswordCredentials("malmborg", "hendr!x");
+		AsyncResult<Boolean> falseResult = new AsyncResult<Boolean>(Boolean.FALSE);
 		try {
 			httpPost.addHeader(new BasicScheme().authenticate(creds, httpPost, null));
 		} catch (AuthenticationException e) {
 			LOGGER.error("Could not add authentication header.", e);
-			return false;
+			return falseResult;
 		}
 		StringBuilder json = new StringBuilder(
 				"{\"portalId\":55,\"userId\":1030736,\"activityId\":1795,\"pointsAwarded\":");
@@ -37,7 +42,7 @@ public class LoyaltyIntegrator {
 			entity = new StringEntity(json.toString());
 		} catch (UnsupportedEncodingException e) {
 			LOGGER.error("Loyalty points encoding error", e);
-			return false;
+			return falseResult;
 		}
 		httpPost.setEntity(entity);
 		httpPost.setHeader("Accept", "application/json");
@@ -46,7 +51,7 @@ public class LoyaltyIntegrator {
 			CloseableHttpResponse response = client.execute(httpPost);
 			if (response.getStatusLine().getStatusCode() == 200) {
 				LOGGER.info("Added {} loyalty points", points);
-				return true;
+				return new AsyncResult<Boolean>(Boolean.TRUE);
 			} else {
 				LOGGER.error("Failed to add {} loyalty points:{}/{}", points, response.getStatusLine().getStatusCode(),
 						response.getStatusLine().getReasonPhrase());
@@ -54,7 +59,8 @@ public class LoyaltyIntegrator {
 		} catch (IOException e) {
 			LOGGER.error("Failed to add {} loyalty points", points, e);
 		}
-		return false;
+		return falseResult;
 
 	}
+
 }
