@@ -602,7 +602,7 @@ public class MainActivity extends Activity implements AsyncListener<AlprResult> 
                 //quoteText.setText(payment.toString());
                 //setPaidState(payment.getPaying());
 
-                setPaidState(true);;
+                setPaidState(payment.getPaying());;
 
             } else {
                 Log.d(LOG_TAG,"Payment empty");
