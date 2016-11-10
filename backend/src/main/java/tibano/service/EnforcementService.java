@@ -7,7 +7,7 @@ import tibano.dto.CarPaymentStatus;
 import tibano.entity.*;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:8000")
+@CrossOrigin
 public class EnforcementService {
 	private final static Logger LOGGER = LoggerFactory.getLogger(EnforcementService.class);
 	private final ParkingTransactionRepository ptRepository;

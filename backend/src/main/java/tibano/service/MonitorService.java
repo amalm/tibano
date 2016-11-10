@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:8000")
+@CrossOrigin
 public class MonitorService {
 	private final AreaRepository areaRepository;
 	private final ParkingTransactionRepository ptRepository;

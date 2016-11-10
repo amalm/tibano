@@ -3,15 +3,13 @@ package tibano.service;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import tibano.dto.CurrentAreaUtilization;
 import tibano.entity.Area;
 import tibano.entity.AreaRepository;
 
 @RestController
+@CrossOrigin
 public class CounterService {
 	private final static Logger LOGGER = LoggerFactory.getLogger(CounterService.class);
 
