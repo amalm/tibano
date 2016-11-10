@@ -1,0 +1,14 @@
+<table class="table table-condensed">
+    <thead>
+        <tr>
+            <th>Area</th>
+            <th>Free</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="area in areaInfo" class="{{area.attentionClass}}" ng-controller="DisplayCtrl">
+            <td>{{area.name}}</td>
+            <td>{{area.free}}</td>
+        </tr>
+    <tbody>
+</table>

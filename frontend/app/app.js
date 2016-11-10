@@ -7,7 +7,8 @@ angular.module('myApp', [
     'myApp.map',
     'myApp.start',
     'myApp.stop',
-    'myApp.enforcement'
+    'myApp.enforcement',
+    'myApp.display'
 ]).config(['$locationProvider', '$routeProvider', '$httpProvider',
 function($locationProvider, $routeProvider, $httpProvider) {
     $locationProvider.hashPrefix('!');
@@ -26,6 +27,8 @@ function($locationProvider, $routeProvider, $httpProvider) {
       v: '3.17'
     });
   })
-.run(function($rootScope) {
+.run(function($rootScope, $http) {
     $rootScope.currentUser = { id:1, name:"Hubert Farnsworth"};
+    $rootScope.selectedArea = { id:1, name:"Airport"};
+    $rootScope.basisUrl = 'http://192.168.0.101:8080';
 });

@@ -13,6 +13,8 @@ public class Area {
 	private String name;
 	private Long capacity;
 	private Long occupied;
+	private Double longitude;
+	private Double latitude;
 	
 	// For Hiberante only
 	Area()
@@ -23,6 +25,8 @@ public class Area {
 	public Area(String name, Long capacity) {
 		this.name = name;
 		this.capacity = capacity;
+		longitude = 0.0;
+		latitude = 0.0;
 	}
 
 	public Area(String name, Long capacity, Long occupied) {
@@ -50,6 +54,14 @@ public class Area {
 	}
 	public void setOccupied(Long occupied) {
 		this.occupied = occupied;
+	}
+
+	public Double getLongitude() {
+		return longitude;
+	}
+
+	public Double getLatitude() {
+		return latitude;
 	}
 
 	@Override

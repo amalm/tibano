@@ -2,7 +2,9 @@
     <div class="container" ng-controller="StartCtrl">
         <div class="row row-centered">
             <div class="well well-lg">
-                <p class="text-center">Hi {{ user.name }}.</p>
+                <p class="text-center">{{ user.name }},</p>
+                <p class="text-center">you are about to start parking in</p>
+                <p class="text-center"><b>{{ selectedArea.name }}</b></p>
             </div>
         </div>
         <div class="row row-centered">
@@ -10,9 +12,10 @@
                 <select class="button btn btn-default dropdown-toggle btn-success" 
                         ng-model="selectedLicensePlate" 
                         ng-options="x for x in licensePlates"
-                        ng-change="update()">
+                        ng-click="update()">
                     <option value="" disabled selected>Select car to start parking...</option>
                 </select>
+                <button class="button btn btn-default btn-success" value="" ng-click="back()">Back to Map</button>
             </div>
         </div>
     </div>

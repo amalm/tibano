@@ -9,11 +9,14 @@ angular.module('myApp.stop', ['ngRoute'])
     });
 }])
 
-.controller('StopCtrl', ['$scope', '$location', '$rootScope', function($scope, $location, $rootScope) {
+.controller('StopCtrl', ['$scope', '$location', '$rootScope', '$http', function($scope, $location, $rootScope, $http) {
     $scope.user = $rootScope.currentUser;
     $scope.licensePlate = $rootScope.selectedLicensePlate;
 
     $scope.stopPressed = function() {
-        $location.path("map");
+        $http.post($rootScope.basisUrl+'/stop/'+$rootScope.selectedArea.id+'/'+$rootScope.selectedLicensePlate)
+        .then(function(response){
+            $location.path("map");
+        });
     }
 }]);
