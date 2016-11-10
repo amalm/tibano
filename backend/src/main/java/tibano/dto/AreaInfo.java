@@ -7,9 +7,11 @@ public class AreaInfo {
     private final Long runningPayments;
 	private final Double longitute;
 	private final Double latitude;
+	private final Long id;
 
-	public AreaInfo(String name, Long capacity, Long occupied, Long runningPayments, Double longitude, Double latitude) {
+	public AreaInfo(Long id, String name, Long capacity, Long occupied, Long runningPayments, Double longitude, Double latitude) {
 		super();
+		this.id = id;
 		this.name = name;
 		this.capacity = capacity;
 		this.occupied = occupied;
@@ -17,6 +19,11 @@ public class AreaInfo {
 		this.longitute = longitude;
 		this.latitude = latitude;
 	}
+
+	public Long getId() {
+		return id;
+	}
+
 	public String getName() {
 		return name;
 	}

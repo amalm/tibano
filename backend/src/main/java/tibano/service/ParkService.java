@@ -23,7 +23,7 @@ import tibano.entity.ParkingTransaction;
 import tibano.entity.ParkingTransactionRepository;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:8000")
+@CrossOrigin
 public class ParkService {
 	private final static Logger LOGGER = LoggerFactory.getLogger(ParkService.class);
 	private final static Double SEC_TARIF = new Double(0.01);

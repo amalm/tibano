@@ -70,9 +70,9 @@ public class MainActivity extends Activity implements AsyncListener<AlprResult> 
 
     private TextView errorText;
 
-    ImageView ivPaidStatePaid;
-    ImageView ivPaidStateUnpaid;
-    ImageView ivPaidState;
+    //ImageView ivPaidStatePaid;
+    //ImageView ivPaidStateUnpaid;
+    //ImageView ivPaidState;
 
     private ProgressDialog progressDialog;
 
@@ -92,6 +92,8 @@ public class MainActivity extends Activity implements AsyncListener<AlprResult> 
     private static String PARKING_AREA = "1";
 
     private static String CHECKAREAS_URL = "http://192.168.1.101:8080/getAreas"; // GET
+
+    ImageButton ib_checkpayment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -126,14 +128,16 @@ public class MainActivity extends Activity implements AsyncListener<AlprResult> 
         errorText = (TextView)findViewById(R.id.errorTextView);
 
         //Button takePicBtn = (Button)findViewById(R.id.button);
-        final ImageButton ib_checkpayment = (ImageButton) findViewById(R.id.ib_checkpayment);
+        ib_checkpayment = (ImageButton) findViewById(R.id.ib_checkpayment);
         setBtnListenerOrDisable(ib_checkpayment, takePhotoBtnClickListener,
                 MediaStore.ACTION_IMAGE_CAPTURE);
 
-        ivPaidStatePaid = (ImageView) findViewById(R.id.iv_paid_valid);
-        ivPaidStateUnpaid = (ImageView) findViewById(R.id.iv_paid_invalid);
-        ivPaidState = (ImageView) findViewById(R.id.iv_paid_open);
+
+        //ivPaidStatePaid = (ImageView) findViewById(R.id.iv_paid_valid);
+        //ivPaidStateUnpaid = (ImageView) findViewById(R.id.iv_paid_invalid);
+        //ivPaidState = (ImageView) findViewById(R.id.iv_paid_open);
         resetPaidState();
+
 
         // Check payment
         //final Button button = (Button) findViewById(R.id.buttonWS);
@@ -302,22 +306,17 @@ public class MainActivity extends Activity implements AsyncListener<AlprResult> 
 
     private void setPaidState(boolean paid) {
 
-        ivPaidState.setVisibility(View.GONE);
-
         if (paid) {
-            ivPaidStatePaid.setVisibility(View.VISIBLE);
-            ivPaidStateUnpaid.setVisibility(View.GONE);
+            ib_checkpayment.setImageResource(R.drawable.check_paying_valid_paid);
         } else {
-            ivPaidStatePaid.setVisibility(View.GONE);
-            ivPaidStateUnpaid.setVisibility(View.VISIBLE);
+            ib_checkpayment.setImageResource(R.drawable.check_paying_valid_unpaid);
         }
+
     }
 
     private void resetPaidState() {
 
-        ivPaidState.setVisibility(View.VISIBLE);
-        ivPaidStatePaid.setVisibility(View.GONE);
-        ivPaidStateUnpaid.setVisibility(View.GONE);
+        ib_checkpayment.setImageResource(R.drawable.check_paying_valid);
     }
 
 
@@ -603,7 +602,7 @@ public class MainActivity extends Activity implements AsyncListener<AlprResult> 
                 //quoteText.setText(payment.toString());
                 //setPaidState(payment.getPaying());
 
-                setPaidState(true);;
+                setPaidState(payment.getPaying());;
 
             } else {
                 Log.d(LOG_TAG,"Payment empty");

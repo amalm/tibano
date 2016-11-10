@@ -9,7 +9,7 @@ import org.json.JSONObject;
 
 public class Payment {
 
-    private String paying;
+    private boolean paying;
     private String licenseplate;
 
     public Payment() {
@@ -19,17 +19,17 @@ public class Payment {
 
         try {
             this.licenseplate = object.getString("licensePlate");
-            this.paying = object.getString("paying");
+            this.paying = object.getBoolean("paying");
         } catch (JSONException e) {
             e.printStackTrace();
         }
     }
 
-    public String getPaying() {
+    public boolean getPaying() {
         return paying;
     }
 
-    public void setPaying(String paying) {
+    public void setPaying(boolean paying) {
         this.paying = paying;
     }
 
