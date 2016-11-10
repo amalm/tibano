@@ -61,9 +61,12 @@ public class MainActivity extends Activity implements AsyncListener<AlprResult> 
     private String mCurrentPhotoPath;
     private ImageView mImageView;
 
-    private EditText plate;
-    private EditText processingTime;
-    private EditText confidence;
+    //private EditText plate;
+    //private EditText processingTime;
+    //private EditText confidence;
+
+    private TextView plate;
+    private TextView confidence;
 
     private TextView errorText;
 
@@ -115,9 +118,9 @@ public class MainActivity extends Activity implements AsyncListener<AlprResult> 
 
         mImageView = (ImageView)findViewById(R.id.imageView);
 
-        plate = (EditText)findViewById(R.id.plateNumberId);
-        processingTime = (EditText)findViewById(R.id.processingTimeId);
-        confidence = (EditText)findViewById(R.id.plateConfidenceLabelId);
+        plate = (TextView) findViewById(R.id.tvPlateNumber);
+        //processingTime = (EditText)findViewById(R.id.processingTimeId);
+        confidence = (TextView)findViewById(R.id.tvPlateConfidence);
 
 
         errorText = (TextView)findViewById(R.id.errorTextView);
@@ -134,12 +137,12 @@ public class MainActivity extends Activity implements AsyncListener<AlprResult> 
 
         // Check payment
         //final Button button = (Button) findViewById(R.id.buttonWS);
-        final ImageView ivCheckPayment = (ImageView) findViewById(R.id.ivCheckPayment);
-        ivCheckPayment.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                new CheckPayment().execute();
-            }
-        });
+        //final ImageView ivCheckPayment = (ImageView) findViewById(R.id.ivCheckPayment);
+        //ivCheckPayment.setOnClickListener(new View.OnClickListener() {
+        //    public void onClick(View v) {
+        //        new CheckPayment().execute();
+        //    }
+        //});
 
         // start Area Update
         new CheckAreas().execute();
@@ -452,9 +455,11 @@ public class MainActivity extends Activity implements AsyncListener<AlprResult> 
         this.plate.setText(plate);
     }
 
+    /*
     public void setProcessingTime(long processingTime){
         this.processingTime.setText(String.format("%d %s", processingTime, "ms"));
     }
+    */
 
     public void setConfidence(double confidence) {
         this.confidence.setText(String.format("%.0f", confidence, " %"));
@@ -466,7 +471,7 @@ public class MainActivity extends Activity implements AsyncListener<AlprResult> 
 
     private void clearData(){
         plate.setText("");
-        processingTime.setText("");
+        confidence.setText("");
     }
 
     @Override
@@ -489,7 +494,7 @@ public class MainActivity extends Activity implements AsyncListener<AlprResult> 
             if (resultItems.size() > 0) {
                 AlprResultItem resultItem = resultItems.get(0);
                 setPlate(resultItem.getPlate());
-                setProcessingTime(alprResult.getProcessingTime());
+                //setProcessingTime(alprResult.getProcessingTime());
                 setConfidence(resultItem.getConfidence());
 
                 dismissProgressDialog();
@@ -592,10 +597,10 @@ public class MainActivity extends Activity implements AsyncListener<AlprResult> 
 
             dismissProgressDialog();
 
-            TextView quoteText = (TextView)findViewById(R.id.tvCheckPaymentId);
+            //TextView quoteText = (TextView)findViewById(R.id.tvCheckPaymentId);
 
             if (payment != null) {
-                quoteText.setText(payment.toString());
+                //quoteText.setText(payment.toString());
                 //setPaidState(payment.getPaying());
 
                 setPaidState(true);;

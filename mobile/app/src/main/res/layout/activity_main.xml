@@ -87,37 +87,16 @@
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:layout_gravity="center_vertical" />
 
-            <EditText
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="4dp"
-                android:id="@+id/plateNumberId"
-                android:ems="10" android:inputType="text"
-                android:layout_gravity="center_vertical" />
-        </TableRow>
-        <TableRow
-            android:id="@+id/tableRow2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp" >
-
             <TextView
-                android:id="@+id/processingTimeLabel"
+                android:id="@+id/tvPlateNumber"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/processingTime_label"
+                android:text="@string/plate_label"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:layout_gravity="center_vertical" />
 
-            <EditText
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="4dp"
-                android:id="@+id/processingTimeId"
-                android:ems="10" android:inputType="text"
-                android:layout_gravity="center_vertical" />
-
         </TableRow>
+
 
         <TableRow
             android:id="@+id/tableRow1"
@@ -133,36 +112,14 @@
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:layout_gravity="center_vertical" />
 
-            <EditText
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="4dp"
-                android:id="@+id/plateConfidenceLabelId"
-                android:ems="10" android:inputType="text"
-                android:layout_gravity="center_vertical" />
-        </TableRow>
-
-        <TableRow
-            android:id="@+id/tableRow1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp" >
-
             <TextView
-                android:id="@+id/checkPayment"
+                android:id="@+id/tvPlateConfidence"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Check Payment"
+                android:text=""
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:layout_gravity="center_vertical" />
 
-            <EditText
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="4dp"
-                android:id="@+id/tvCheckPaymentId"
-                android:ems="10" android:inputType="text"
-                android:layout_gravity="center_vertical" />
         </TableRow>
 
 
