@@ -6,7 +6,8 @@ angular.module('myApp', [
     'myApp.map',
     'myApp.start',
     'myApp.stop',
-    'myApp.enforcement'
+    'myApp.enforcement',
+    'myApp.display'
 ]).
 config(['$locationProvider', '$routeProvider', '$httpProvider',
 function($locationProvider, $routeProvider, $httpProvider) {
