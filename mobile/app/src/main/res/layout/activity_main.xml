@@ -69,6 +69,12 @@
         android:layout_gravity="center_horizontal"
         android:textColor="@android:color/holo_red_dark"/>
 
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:background="@color/skidataYellow">
+    </FrameLayout>
+
     <TableLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content" >
@@ -77,15 +83,7 @@
             android:id="@+id/tableRow1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp" >
-
-            <TextView
-                android:id="@+id/plateLabel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/plate_label"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:layout_gravity="center_vertical" />
+            android:layout_gravity="center_horizontal|center">
 
             <TextView
                 android:id="@+id/tvPlateNumber"
@@ -93,24 +91,8 @@
                 android:layout_height="wrap_content"
                 android:text="@string/plate_label"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:layout_gravity="center_vertical" />
-
-        </TableRow>
-
-
-        <TableRow
-            android:id="@+id/tableRow1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp" >
-
-            <TextView
-                android:id="@+id/plateConfidenceLabel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/plate_confidence"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:layout_gravity="center_vertical" />
+                android:layout_gravity="center_horizontal|center"
+                android:textColor="@color/skidataYellow" />
 
             <TextView
                 android:id="@+id/tvPlateConfidence"
@@ -122,8 +104,9 @@
 
         </TableRow>
 
-
     </TableLayout>
+
+
 
     <LinearLayout
         android:orientation="horizontal"
@@ -132,9 +115,10 @@
         android:layout_gravity="center_horizontal" android:layout_marginTop="10dp">
 
         <ImageView
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:id="@+id/imageView" />
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/imageView"
+            />
     </LinearLayout>
 
 </LinearLayout>

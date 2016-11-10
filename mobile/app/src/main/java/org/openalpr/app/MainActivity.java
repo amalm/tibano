@@ -462,7 +462,7 @@ public class MainActivity extends Activity implements AsyncListener<AlprResult> 
     */
 
     public void setConfidence(double confidence) {
-        this.confidence.setText(String.format("%.0f", confidence, " %"));
+        this.confidence.setText(String.format(" (%.0f %% confidence)", confidence, " %"));
     }
 
     private void setErrorText(String text) {
