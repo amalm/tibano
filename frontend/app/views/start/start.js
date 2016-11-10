@@ -15,12 +15,16 @@ function($scope, $location, $rootScope, $http) {
     $scope.licensePlates = [];
     $scope.selectedLicensePlate = null;
 
-    $scope.update = function() {
-        $rootScope.selectedLicensePlate = $scope.selectedLicensePlate;
+    $scope.update = function(licPlate) {
+        $rootScope.selectedLicensePlate = licPlate.x;
         $http.post($rootScope.basisUrl+'/start/'+$rootScope.selectedArea.id+'/'+$rootScope.selectedLicensePlate)
         .then(function(response){
             $location.path("stop");
         });
+    }
+
+    $scope.back = function() {
+        $location.path("map");
     }
 
     $scope.init = function() {

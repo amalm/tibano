@@ -22,22 +22,25 @@ public class ParkService {
 	private final AreaRepository areaRepository;
 	private final ParkingTransactionRepository ptRepository;
 	private final CarRepository carRepository;
-	
-	
-	public ParkService(tibano.entity.AreaRepository areaRepository, ParkingTransactionRepository ptRepository, CarRepository carRepository) {
+	private final LoyaltyIntegrator loyaltyIntegrator;
+
+	public ParkService(tibano.entity.AreaRepository areaRepository, ParkingTransactionRepository ptRepository,
+			CarRepository carRepository, LoyaltyIntegrator loyaltyIntegrator) {
 		super();
 		this.areaRepository = areaRepository;
 		this.ptRepository = ptRepository;
 		this.carRepository = carRepository;
+		this.loyaltyIntegrator = loyaltyIntegrator;
 	}
 
-	@RequestMapping(path="/start/{areaId}/{licensePlate}", method = RequestMethod.POST)
+	@RequestMapping(path = "/start/{areaId}/{licensePlate}", method = RequestMethod.POST)
 	void start(@PathVariable Long areaId, @PathVariable String licensePlate) {
 		LOGGER.info("Start parking in area {} with license plate {}", areaId, licensePlate);
 		// Check if a TX is already running
 		ParkingTransaction pt = ptRepository.findOpenTransactionByAreaAndLicensePlate(areaId, licensePlate);
 		if (pt != null) {
-			LOGGER.warn("A parking payment transaction is already running for areaId/licensePlate", areaId, licensePlate);
+			LOGGER.warn("A parking payment transaction is already running for areaId/licensePlate", areaId,
+					licensePlate);
 			return;
 		}
 		Area area = areaRepository.findOne(areaId);
@@ -45,26 +48,26 @@ public class ParkService {
 			Car car = carRepository.findByLicensePlate(licensePlate);
 			if (car != null) {
 				ptRepository.save(new ParkingTransaction(area, car));
-			}
-			else {
+			} else {
 				LOGGER.error("Could not find a car with license plate {}", licensePlate);
 			}
-		}
-		else {
+		} else {
 			LOGGER.error("Could not find an area with id {} to start a TX for license plate {}", areaId, licensePlate);
 		}
 	}
 
-	@RequestMapping(path="/stop/{areaId}/{licensePlate}", method = RequestMethod.POST)
+	@RequestMapping(path = "/stop/{areaId}/{licensePlate}", method = RequestMethod.POST)
 	void stop(@PathVariable Long areaId, @PathVariable String licensePlate) {
 		LOGGER.info("Stop parking in area {} with license plate {}", areaId, licensePlate);
 		ParkingTransaction pt = ptRepository.findOpenTransactionByAreaAndLicensePlate(areaId, licensePlate);
 		if (pt != null) {
 			pt.end();
 			ptRepository.save(pt);
-		}
-		else {
-			LOGGER.error("Could not find a open transaction in area with id {}  for license plate {}", areaId, licensePlate);
+			loyaltyIntegrator.addPoints(10);
+
+		} else {
+			LOGGER.error("Could not find a open transaction in area with id {}  for license plate {}", areaId,
+					licensePlate);
 		}
 
 	}

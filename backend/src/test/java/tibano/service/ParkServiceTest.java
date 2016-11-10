@@ -27,12 +27,14 @@ public class ParkServiceTest {
 	private ParkingTransactionRepository ptRepository;
 	@Mock
 	private CarRepository carRepository;
+	@Mock
+	private LoyaltyIntegrator loyaltyIntegrator;
 	private ParkService target;
 	
 	@Before
     public void setup() {
 		MockitoAnnotations.initMocks(this);
-		target = new ParkService(areaRepository, ptRepository, carRepository);
+		target = new ParkService(areaRepository, ptRepository, carRepository, loyaltyIntegrator);
     }
 	
 	@Test

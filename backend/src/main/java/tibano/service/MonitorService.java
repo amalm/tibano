@@ -1,17 +1,16 @@
 package tibano.service;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import tibano.dto.AreaInfo;
 import tibano.entity.Area;
 import tibano.entity.AreaRepository;
 import tibano.entity.ParkingTransactionRepository;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:8000")
@@ -31,7 +30,8 @@ public class MonitorService {
 		List<AreaInfo> areaInfos = new ArrayList<>();
 		for (Area area : areas) {
 			Long runningTxs = ptRepository.getOpenTransactionByAreaCount(area.getId());
-			areaInfos.add(new AreaInfo(area.getName(), area.getCapacity(), area.getOccupied(), runningTxs));
+			areaInfos.add(new AreaInfo(area.getName(), area.getCapacity(), area.getOccupied(), runningTxs,
+					area.getLatitude(), area.getLongitude()));
 		}
 		return areaInfos;
 	}
