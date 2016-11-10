@@ -11,8 +11,8 @@ angular.module('myApp.enforcement', ['ngRoute'])
     delete $httpProvider.defaults.headers.common['X-Requested-With'];
 }])
 
-.controller('EnforcementCtrl', ['$scope', '$http', '$rootScope', '$interval',
-function($scope, $http, $rootScope, $interval) {
+.controller('EnforcementCtrl', ['$scope', '$http', '$rootScope', '$interval', '$timeout',
+function($scope, $http, $rootScope, $interval, $timeout) {
     $scope.refreshData = function() {
         $http.get($rootScope.basisUrl+'/getAreas')
         .then(function(response) {
@@ -34,10 +34,10 @@ function($scope, $http, $rootScope, $interval) {
     $scope.refreshData();
 
     $scope.startTimer = function () {
-        //Initialize the Timer to run every 1000 milliseconds i.e. one second.
-        $scope.timer = $interval(function () {
+        $scope.timer = $timeout(function () {
         $scope.refreshData();
-        }, 1000);
+        $scope.startTimer();
+        }, 2000);
     };
 
     $scope.startTimer();
