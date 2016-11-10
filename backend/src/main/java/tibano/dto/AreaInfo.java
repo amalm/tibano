@@ -5,7 +5,7 @@ public class AreaInfo {
     private final Long capacity;
     private final Long occupied;
     private final Long runningPayments;
-	private final Double longitute;
+	private final Double longitude;
 	private final Double latitude;
 	private final Long id;
 
@@ -16,7 +16,7 @@ public class AreaInfo {
 		this.capacity = capacity;
 		this.occupied = occupied;
 		this.runningPayments = runningPayments;
-		this.longitute = longitude;
+		this.longitude = longitude;
 		this.latitude = latitude;
 	}
 
@@ -37,8 +37,8 @@ public class AreaInfo {
 		return runningPayments;
 	}
 
-	public Double getLongitute() {
-		return longitute;
+	public Double getLongitude() {
+		return longitude;
 	}
 
 	public Double getLatitude() {
