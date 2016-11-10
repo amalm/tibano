@@ -21,6 +21,8 @@ import org.springframework.transaction.annotation.Transactional;
 public class ParkingTransactionRepositoryTest {
 	private static final String AREA = "Area";
 	private static final String USER_NAME = "UserName";
+	private static final String LIC_PLATE = "ParkingTransactionRepositoryTest";
+	
 	@Autowired
 	private ParkingTransactionRepository target;
 	@Autowired
@@ -41,7 +43,7 @@ public class ParkingTransactionRepositoryTest {
 	@Test
 	public void read()
 	{
-		Car car = carRepository.save(new Car("STEST1", user));
+		Car car = carRepository.save(new Car(LIC_PLATE, user));
 		ParkingTransaction pt = new ParkingTransaction(area, car);
 		pt = target.save(pt);
 		assertEquals(target.findOne(pt.getId()).getArea().getName(), AREA);
@@ -50,7 +52,7 @@ public class ParkingTransactionRepositoryTest {
 	@Test
 	public void findOpenTransactionByAreaAndLicensePlate() {
 		// when there is a closed TX
-		Car car = carRepository.save(new Car("STEST2", user));
+		Car car = carRepository.save(new Car(LIC_PLATE+"1", user));
 		ParkingTransaction pt = new ParkingTransaction(area, car);
 		pt.end();
 		pt = target.save(pt);
@@ -63,7 +65,7 @@ public class ParkingTransactionRepositoryTest {
 
 	@Test
 	public void findOpenTransactionByAreaAndLicensePlateNoTX() {
-		assertNull(target.findOpenTransactionByAreaAndLicensePlate(area.getId(), "STEST3"));
+		assertNull(target.findOpenTransactionByAreaAndLicensePlate(area.getId(), LIC_PLATE+"3"));
 		
 	}
 	@Test

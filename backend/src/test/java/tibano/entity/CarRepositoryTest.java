@@ -16,7 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 @DataJpaTest
 @Transactional(propagation = Propagation.NOT_SUPPORTED)
 public class CarRepositoryTest {
-	private static final String LIC_PLATE = "STEST";
+	private static final String LIC_PLATE = "CarRepositoryTest";
 	private static final String USER_NAME = "trump";
 	
 	@Autowired

@@ -30,5 +30,6 @@ function($locationProvider, $routeProvider, $httpProvider) {
 .run(function($rootScope, $http) {
     $rootScope.currentUser = { id:1, name:"Hubert Farnsworth"};
     $rootScope.selectedArea = { id:1, name:"Airport"};
-    $rootScope.basisUrl = 'http://192.168.0.101:8080';
+    //$rootScope.basisUrl = 'http://192.168.0.101:8080';
+    $rootScope.basisUrl = 'http://127.0.0.1:8080';
 });
