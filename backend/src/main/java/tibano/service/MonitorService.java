@@ -30,7 +30,7 @@ public class MonitorService {
 		List<AreaInfo> areaInfos = new ArrayList<>();
 		for (Area area : areas) {
 			Long runningTxs = ptRepository.getOpenTransactionByAreaCount(area.getId());
-			areaInfos.add(new AreaInfo(area.getName(), area.getCapacity(), area.getOccupied(), runningTxs,
+			areaInfos.add(new AreaInfo(area.getId(), area.getName(), area.getCapacity(), area.getOccupied(), runningTxs,
 					area.getLatitude(), area.getLongitude()));
 		}
 		return areaInfos;
