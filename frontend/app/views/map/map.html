@@ -1,4 +1,12 @@
-    <div class="well well-lg" ng-controller="MapCtrl">
-      <p class="text-center">Hi {{ user.name }}, where do you go?</p>
-    </div>
-    <iframe src="https://www.google.com/maps/embed/v1/place?q=place_id:ChIJsdQIqd2adkcRPfcqQaGD4cE&key=AIzaSyDKK36ZMHaCwNqPUenwJD1HSk-4MFItJFw" width="100%" height="450" frameborder="0" style="border:0"></iframe>
+<div class="well well-lg" ng-controller="MapCtrl">
+    <p class="text-center">Hi {{ user.name }}, where do you go?</p>
+    <ui-gmap-google-map center="map.center" zoom="map.zoom" ng-cloak>
+      <ui-gmap-marker idKey="markers[0].id" coords="markers[0].coords" options="markers[0].options" click="clickhandler">
+      </ui-gmap-marker>
+      <ui-gmap-marker idKey="markers[1].id" coords="markers[1].coords" options="markers[1].options" click="clickhandler">
+      </ui-gmap-marker>
+      <ui-gmap-marker idKey="markers[2].id" coords="markers[2].coords" options="markers[2].options" click="clickhandler">
+      </ui-gmap-marker>
+    </ui-gmap-google-map>
+</div>
+<!--iframe src="https://www.google.com/maps/embed/v1/place?q=place_id:ChIJsdQIqd 2adkcRPfcqQaGD4cE&key=AIzaSyDKK36ZMHaCwNqPUenwJD1HSk-4MFItJFw" width="100%" height="450" frameborder="0" style="border:0"></iframe-->
