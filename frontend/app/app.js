@@ -28,7 +28,7 @@ function($locationProvider, $routeProvider, $httpProvider) {
     });
   })
 .run(function($rootScope, $http) {
-    $rootScope.currentUser = { id:1, name:"Hubert Farnsworth"};
+    $rootScope.currentUser = { id:1, name:"Thomas"};
     $rootScope.selectedArea = { id:1, name:"Airport"};
     $rootScope.basisUrl = 'http://192.168.1.101:8080';
 });
