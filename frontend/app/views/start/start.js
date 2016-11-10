@@ -23,6 +23,10 @@ function($scope, $location, $rootScope, $http) {
         });
     }
 
+    $scope.back = function() {
+        $location.path("map");
+    }
+
     $scope.init = function() {
         $http.get($rootScope.basisUrl+'/user?userId='+ $rootScope.currentUser.id)
         .then(function(response) {
