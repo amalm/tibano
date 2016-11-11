@@ -9,7 +9,7 @@ insert into Car(id, license_plate, user_id) values (1, 'HHFT4711', 2);
 insert into Car(id, license_plate, user_id) values (2, 'K361GO', 1);
 insert into Car(id, license_plate, user_id) values (3, 'S123AB', 2);
 insert into Car(id, license_plate, user_id) values (4, 'SL863MG', 2);
-insert into Car(id, license_plate, user_id) values (5, 'FF10FF', 1);
+insert into Car(id, license_plate, user_id) values (5, 'SZ2BSP', 1);
 
 
 
