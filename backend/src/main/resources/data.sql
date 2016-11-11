@@ -1,6 +1,6 @@
-insert into Area(id, name, capacity, occupied, latitude, longitude) values(1, 'Airport', 500, 0, 47.829411, 13.005432);
-insert into Area(id, name, capacity, occupied, latitude, longitude) values(2, 'Central Station', 40, 0, 47.813777, 13.044259);
-insert into Area(id, name, capacity, occupied, latitude, longitude) values(3, 'Park&Ride south', 130, 0, 47.769629,	13.07166);
+insert into Area(id, name, capacity, occupied, latitude, longitude) values(1, 'Airport', 500, 39, 47.829411, 13.005432);
+insert into Area(id, name, capacity, occupied, latitude, longitude) values(2, 'Central Station', 40, 20, 47.813777, 13.044259);
+insert into Area(id, name, capacity, occupied, latitude, longitude) values(3, 'Park&Ride south', 130, 88, 47.769629,	13.07166);
 
 insert into User(id, name) values(1, 'Thomas');
 insert into User(id, name) values(2, 'Anders M.');
