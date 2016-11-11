@@ -8,7 +8,8 @@ angular.module('myApp', [
     'myApp.start',
     'myApp.stop',
     'myApp.enforcement',
-    'myApp.display'
+    'myApp.display',
+    'myApp.history'
 ]).config(['$locationProvider', '$routeProvider', '$httpProvider',
 function($locationProvider, $routeProvider, $httpProvider) {
     $locationProvider.hashPrefix('!');
@@ -19,6 +20,9 @@ function($locationProvider, $routeProvider, $httpProvider) {
 
     $httpProvider.defaults.useXDomain = true;
     delete $httpProvider.defaults.headers.common['X-Requested-With'];
+    $httpProvider.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
+    $httpProvider.defaults.headers.common['Access-Control-Allow-Methods'] = 'GET, POST, PATCH, PUT, DELETE, OPTIONS';
+    $httpProvider.defaults.headers.common['Access-Control-Allow-Headers'] = 'Origin, Content-Type, X-Auth-Token';
 }])
 .config(function(uiGmapGoogleMapApiProvider) {
     uiGmapGoogleMapApiProvider.configure({
@@ -31,5 +35,4 @@ function($locationProvider, $routeProvider, $httpProvider) {
     $rootScope.currentUser = { id:1, name:"Thomas"};
     $rootScope.selectedArea = { id:1, name:"Airport"};
     $rootScope.basisUrl = 'http://192.168.1.101:8080';
-    //$rootScope.basisUrl = 'http://127.0.0.1:8080';
 });

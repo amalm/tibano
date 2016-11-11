@@ -40,6 +40,6 @@ function($scope, $http, $rootScope, $interval, $timeout) {
         }, 2000);
     };
 
-    $scope.startTimer();
+    //$scope.startTimer();
 
 }]);
