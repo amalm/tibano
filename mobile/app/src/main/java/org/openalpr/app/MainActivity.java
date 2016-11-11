@@ -61,18 +61,10 @@ public class MainActivity extends Activity implements AsyncListener<AlprResult> 
     private String mCurrentPhotoPath;
     private ImageView mImageView;
 
-    //private EditText plate;
-    //private EditText processingTime;
-    //private EditText confidence;
-
     private TextView plate;
     private TextView confidence;
 
     private TextView errorText;
-
-    //ImageView ivPaidStatePaid;
-    //ImageView ivPaidStateUnpaid;
-    //ImageView ivPaidState;
 
     private ProgressDialog progressDialog;
 
@@ -90,7 +82,6 @@ public class MainActivity extends Activity implements AsyncListener<AlprResult> 
 
     private static String CHECKPAYMENT_URL = "http://192.168.1.101:8080/checkPayment"; // GET
     private static String PARKING_AREA = "1";
-
     private static String CHECKAREAS_URL = "http://192.168.1.101:8080/getAreas"; // GET
 
     ImageButton ib_checkpayment;
@@ -133,20 +124,16 @@ public class MainActivity extends Activity implements AsyncListener<AlprResult> 
                 MediaStore.ACTION_IMAGE_CAPTURE);
 
 
-        //ivPaidStatePaid = (ImageView) findViewById(R.id.iv_paid_valid);
-        //ivPaidStateUnpaid = (ImageView) findViewById(R.id.iv_paid_invalid);
-        //ivPaidState = (ImageView) findViewById(R.id.iv_paid_open);
+        TextView tvArea = (TextView) findViewById(R.id.tvAreaInfoId) ;
+        tvArea.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(), OverviewActivity.class);
+                startActivityForResult(i, 100); // 100 is some code to identify the returning result
+            }
+        });
+
         resetPaidState();
-
-
-        // Check payment
-        //final Button button = (Button) findViewById(R.id.buttonWS);
-        //final ImageView ivCheckPayment = (ImageView) findViewById(R.id.ivCheckPayment);
-        //ivCheckPayment.setOnClickListener(new View.OnClickListener() {
-        //    public void onClick(View v) {
-        //        new CheckPayment().execute();
-        //    }
-        //});
 
         // start Area Update
         new CheckAreas().execute();
