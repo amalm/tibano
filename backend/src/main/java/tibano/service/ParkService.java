@@ -1,28 +1,17 @@
 package tibano.service;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.web.bind.annotation.*;
+import tibano.dto.PaymentInfo;
+import tibano.entity.*;
+
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-
-import tibano.dto.PaymentInfo;
-import tibano.entity.Area;
-import tibano.entity.AreaRepository;
-import tibano.entity.Car;
-import tibano.entity.CarRepository;
-import tibano.entity.ParkingTransaction;
-import tibano.entity.ParkingTransactionRepository;
 
 @RestController
 @CrossOrigin
@@ -92,7 +81,7 @@ public class ParkService {
 			Double amount = duration.getSeconds() * SEC_TARIF;
 			BigDecimal bd = new BigDecimal(amount);
 			bd = bd.setScale(2, RoundingMode.HALF_UP);
-			Integer loyaltyPoints = Integer.valueOf(Double.valueOf(bd.doubleValue()).intValue());
+			Integer loyaltyPoints = 5 + Integer.valueOf(Double.valueOf(bd.doubleValue()).intValue());
 			return new PaymentInfo(pt.getEnd(), amount, duration, loyaltyPoints);
 		}
 		return new PaymentInfo(null, Double.valueOf(0), Duration.ZERO, Integer.valueOf(0));
