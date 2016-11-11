@@ -27,6 +27,8 @@ function($scope, $http, $rootScope, $interval, $timeout) {
                         a.attentionClass = 'danger';
                     }
                 }
+                // for demo always show highlighted
+                a.attentionClass = 'danger';
             }
         });
     }

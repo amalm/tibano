@@ -12,6 +12,28 @@
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
 /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
+ .labelFull {
+   color: black;
+   background-color: red;
+   font-family: "Lucida Grande", "Arial", sans-serif;
+   font-size: 10px;
+   font-weight: bold;
+   text-align: center;
+   width: 60px;
+   border: 2px solid black;
+   white-space: nowrap;
+ }
+ .labelFree {
+   color: black;
+   background-color: lightgreen;
+   font-family: "Lucida Grande", "Arial", sans-serif;
+   font-size: 10px;
+   font-weight: bold;
+   text-align: center;
+   width: 60px;
+   border: 2px solid black;
+   white-space: nowrap;
+ }
 html {
   font-family: sans-serif;
   -ms-text-size-adjust: 100%;
