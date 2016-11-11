@@ -1,0 +1,19 @@
+<div class="well well-lg" ng-controller="HistoryCtrl">
+    <ul class="menu">
+        <li><a href="#!/map">map</a></li>
+    </ul>
+
+    Hi {{ user.name }}. Your last parking transactions...</b>.
+    <table class="table .table-bordered">
+        <thead>
+            <th>Amount</th>
+            <th>Loyalty points</th>
+        </thead>
+        <tbody>
+            <tr ng-repeat="payment in payments">
+                <td>{{payment.amount}}</td>
+                <td>{{payment.loyaltyPoints}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
