@@ -27,7 +27,7 @@ function($scope, $rootScope, $location, uiGmapGoogleMapApi, $http) {
     };
     $scope.user = $rootScope.currentUser;
     $scope.clickhandler = function(marker, eventName, markerModel) {
-      $rootScope.selectedArea = {id:markerModel.id, name:markerModel.title};
+      $rootScope.selectedArea = {id:markerModel.id, name:markerModel.options.title};
       $location.path("start");
     };
 
@@ -45,7 +45,7 @@ function($scope, $rootScope, $location, uiGmapGoogleMapApi, $http) {
                     latitude: a.latitude,
                     longitude: a.longitude,
                     options: {
-                        title: a.name + " – "+(a.capacity-a.occupied) + " Free",
+                        title: a.name,
                         labelContent: ""+(free) + " Free",
                         labelClass: free==0?"labelFull":"labelFree"
                     }
