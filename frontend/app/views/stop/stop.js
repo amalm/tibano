@@ -9,7 +9,7 @@ angular.module('myApp.stop', ['ngRoute'])
     });
 }])
 
-.controller('StopCtrl', ['$scope', '$location', '$rootScope', '$http', function($scope, $location, $rootScope, $http) {
+.controller('StopCtrl', ['$scope', '$location', '$rootScope', '$http', '$timeout', function($scope, $location, $rootScope, $http, $timeout) {
     $scope.user = $rootScope.currentUser;
     $scope.licensePlate = $rootScope.selectedLicensePlate;
     $scope.getPaymentInfo = function() {
@@ -26,4 +26,13 @@ angular.module('myApp.stop', ['ngRoute'])
             $location.path("history");
         });
     }
+    $scope.startTimer = function () {
+        $scope.timer = $timeout(function () {
+        $scope.getPaymentInfo();
+        $scope.startTimer();
+        }, 2000);
+    };
+
+    $scope.startTimer();
+
 }]);

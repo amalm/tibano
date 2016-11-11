@@ -90,7 +90,10 @@ public class ParkService {
 		if (pt != null) {
 			Duration duration = Duration.between(pt.getStart(), LocalDateTime.now());
 			Double amount = duration.getSeconds() * SEC_TARIF;
-			BigDecimal bd = new BigDecimal(duration.getSeconds()*LOYALTY_POINTS_PER_SEC);
+			BigDecimal bd = new BigDecimal(amount);
+			bd = bd.setScale(0, RoundingMode.HALF_UP);
+			amount = Double.valueOf(bd.doubleValue());
+			bd = new BigDecimal(duration.getSeconds()*LOYALTY_POINTS_PER_SEC);
 			bd = bd.setScale(0, RoundingMode.HALF_UP);
 			Integer loyaltyPoints = Integer.valueOf(Double.valueOf(bd.doubleValue()).intValue());
 			return new PaymentInfo(pt.getEnd(), amount, duration, loyaltyPoints);
@@ -102,7 +105,9 @@ public class ParkService {
 		Iterable<ParkingTransaction> pts = ptRepository.findAll();
 		List<PaymentInfo> paymentInfos = new ArrayList<>();
 		for (ParkingTransaction pt : pts) {
-			PaymentInfo paymentInfo = new PaymentInfo(pt.getEnd(), pt.getAmount(), pt.getDuration(), pt.getLoyaltyPoints());
+			BigDecimal bd = new BigDecimal(pt.getAmount());
+			bd = bd.setScale(0, RoundingMode.HALF_UP);
+			PaymentInfo paymentInfo = new PaymentInfo(pt.getEnd(), Double.valueOf(bd.doubleValue()), pt.getDuration(), pt.getLoyaltyPoints());
 			paymentInfos.add(paymentInfo);
 		}
 		return paymentInfos;
