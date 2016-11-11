@@ -27,7 +27,10 @@ angular.module('myApp.enforcement', ['ngRoute'])
                                 a.attentionClass = 'danger';
                             }
                         }
+                        // for demo always show highlighted
+                        a.attentionClass = 'danger';
                     }
+
                 });
         }
 
