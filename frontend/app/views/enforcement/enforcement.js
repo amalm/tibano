@@ -12,34 +12,39 @@ angular.module('myApp.enforcement', ['ngRoute'])
 }])
 
 .controller('EnforcementCtrl', ['$scope', '$http', '$rootScope', '$interval', '$timeout',
-function($scope, $http, $rootScope, $interval, $timeout) {
-    $scope.refreshData = function() {
-        $http.get($rootScope.basisUrl+'/getAreas')
-        .then(function(response) {
-            $scope.areaInfo = response.data;
-            for (var i=0; i<$scope.areaInfo.length; i++) {
-                var a = $scope.areaInfo[i];
-                a.attentionClass = 'success';
-                if (0 < a.occupied) {
-                    var dangerThreshold = a.occupied * 0.95;
-                    var percentPaying = 100.0 * a.runningPayments / a.occupied;
-                    if (percentPaying < dangerThreshold) {
-                        a.attentionClass = 'danger';
+    function($scope, $http, $rootScope, $interval, $timeout) {
+        $scope.refreshData = function() {
+            $http.get($rootScope.basisUrl + '/getAreas')
+                .then(function(response) {
+                    $scope.areaInfo = response.data;
+                    for (var i = 0; i < $scope.areaInfo.length; i++) {
+                        var a = $scope.areaInfo[i];
+                        a.attentionClass = 'success';
+                        if (0 < a.occupied) {
+                            var dangerThreshold = a.occupied * 0.95;
+                            var percentPaying = 100.0 * a.runningPayments / a.occupied;
+                            if (percentPaying < dangerThreshold) {
+                                a.attentionClass = 'danger';
+                            }
+                        }
                     }
-                }
-            }
+                });
+        }
+
+        $scope.refreshData();
+
+        $scope.startTimer = function() {
+            $scope.timer = $timeout(function() {
+                $scope.refreshData();
+                $scope.startTimer();
+            }, 2000);
+        };
+        $scope.stopTimer = function() {
+            $timeout.cancel($scope.timer);
+        }
+        $scope.startTimer();
+        $scope.$on('$destroy', function() {
+            $scope.stopTimer();
         });
     }
-
-    $scope.refreshData();
-
-    $scope.startTimer = function () {
-        $scope.timer = $timeout(function () {
-        $scope.refreshData();
-        $scope.startTimer();
-        }, 2000);
-    };
-
-    $scope.startTimer();
-
-}]);
+]);
