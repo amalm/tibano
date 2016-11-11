@@ -58,7 +58,7 @@ public class ParkingTransactionRepositoryTest {
 		// when there is a closed TX
 		Car car = carRepository.save(new Car(LIC_PLATE+"1", user));
 		ParkingTransaction pt = new ParkingTransaction(area, car);
-		pt.end(new PaymentInfo(Double.valueOf(0), Duration.ZERO, Double.valueOf(0)));
+		pt.end(new PaymentInfo(null, Double.valueOf(0), Duration.ZERO, Integer.valueOf(0)));
 		pt = target.save(pt);
 		// and an open TX
 		pt = new ParkingTransaction(area, car);

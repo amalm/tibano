@@ -1,5 +1,6 @@
 package tibano.entity;
 
+import java.time.Duration;
 import java.time.LocalDateTime;
 
 import javax.persistence.Entity;
@@ -26,9 +27,9 @@ public class ParkingTransaction {
 	private Car car;
 	private final LocalDateTime start;
 	private LocalDateTime end;
-	private String duration;
-	private String amount;
-	private String loyaltyPoints;
+	private Duration duration;
+	private Double amount;
+	private Integer loyaltyPoints;
 	
 	//Hibernate
 	ParkingTransaction()
@@ -63,15 +64,15 @@ public class ParkingTransaction {
 	}
 	
 
-	public String getDuration() {
+	public Duration getDuration() {
 		return duration;
 	}
 
-	public String getAmount() {
+	public Double getAmount() {
 		return amount;
 	}
 
-	public String getLoyaltyPoints() {
+	public Integer getLoyaltyPoints() {
 		return loyaltyPoints;
 	}
 
@@ -79,7 +80,7 @@ public class ParkingTransaction {
 		end = LocalDateTime.now();
 		duration = paymentInfo.getDuration();
 		amount = paymentInfo.getAmount();
-		loyaltyPoints = paymentInfo.getLoyaltyPoints().toString();
+		loyaltyPoints = paymentInfo.getLoyaltyPoints();
 		
 	}
 	
