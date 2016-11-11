@@ -31,7 +31,7 @@ public class MonitorService {
 		for (Area area : areas) {
 			Long runningTxs = ptRepository.getOpenTransactionByAreaCount(area.getId());
 			areaInfos.add(new AreaInfo(area.getId(), area.getName(), area.getCapacity(), area.getOccupied(), runningTxs,
-					area.getLatitude(), area.getLongitude()));
+					area.getLongitude(), area.getLatitude()));
 		}
 		return areaInfos;
 	}

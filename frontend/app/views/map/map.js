@@ -10,8 +10,8 @@ angular.module('myApp.map', ['ngRoute'])
 }])
 
 
-.controller('MapCtrl', ['$scope', '$rootScope', '$location', 'uiGmapGoogleMapApi', function($scope, $rootScope, $location, uiGmapGoogleMapApi) {
-    $scope.user = $rootScope.currentUser;
+.controller('MapCtrl', ['$scope', '$rootScope', '$location', 'uiGmapGoogleMapApi', '$http',
+function($scope, $rootScope, $location, uiGmapGoogleMapApi, $http) {
     var position = {
         coords: {
             latitude: 47.829411,
@@ -25,41 +25,35 @@ angular.module('myApp.map', ['ngRoute'])
         },
         zoom: 11
     };
+    $scope.user = $rootScope.currentUser;
     $scope.clickhandler = function(marker, eventName, markerModel) {
-      $rootScope.selectedArea = {id:marker.key, name:marker.title};
+      $rootScope.selectedArea = {id:markerModel.id, name:markerModel.title};
       $location.path("start");
     };
 
-    $scope.markers = [
-      {
-        id: 1,
-        coords: {
-            latitude: 47.829411,
-            longitude: 13.005432
-        },
-        options: {
-            title: 'Airport'
-        }
-    },
-    {
-      id: 2,
-      coords: {
-          latitude: 47.813777,
-          longitude: 13.044259
-      },
-      options: {
-          title: 'Central Station'
-      }
-    },
-    {
-      id: 3,
-      coords: {
-          latitude: 47.769629,
-          longitude: 13.071660
-      },
-      options: {
-          title: 'Park_Ride south'
-      }
-    }
-];
+    $scope.markers = [];
+
+    $scope.refreshData = function() {
+        $http.get($rootScope.basisUrl+'/getAreas')
+        .then(function(response) {
+            var as = response.data;
+            for (var i=0; i<as.length; i++) {
+                var a = as[i];
+                var free = a.capacity-a.occupied;
+                $scope.markers[i] = {
+                    id: a.id,
+                    latitude: a.latitude,
+                    longitude: a.longitude,
+                    options: {
+                        title: a.name + " – "+(a.capacity-a.occupied) + " Free",
+                        labelContent: ""+(free) + " Free",
+                        labelClass: free==0?"labelFull":"labelFree"
+                    }
+                };
+            }
+        });
+    };
+
+    $scope.refreshData();
+
 }]);
